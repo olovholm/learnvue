@@ -1,14 +1,10 @@
-import Vue from 'vue'
+import {createApp} from 'vue'
 import App from './App.vue'
 import BaseCard from './components/UI/BaseCard.vue'
 import BaseButton from './components/UI/BaseButton.vue'
 
-Vue.config.productionTip = false
 
-new Vue({
-  components: {
-    BaseCard,
-    BaseButton
-  },
-  render: h => h(App),
-}).$mount('#app')
+const app = createApp(App)
+app.component(BaseCard)
+app.component(BaseButton)
+app.mount('#app')
