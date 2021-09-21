@@ -8,15 +8,15 @@
   </div>
 </template>
 <script>
-import StoredResources from "@/components/learning-resources/StoredResources";
-import AddResources from "@/components/learning-resources/AddResources";
+import AddResource from "../learning-resources/AddResource";
+import StoredResources from "../learning-resources/StoredResources";
 import BaseButton from "@/components/UI/BaseButton";
 import BaseCard from '@/components/UI/BaseCard'
 
 export default {
   components: {
     StoredResources,
-    AddResources,
+    AddResource,
     BaseButton,
     BaseCard
   },
