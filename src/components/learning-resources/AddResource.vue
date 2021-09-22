@@ -1,17 +1,17 @@
 <template>
   <base-card>
-    <form>
+    <form @submit.prevent="submitData">
       <div class="form-control">
         <label for="title">Title</label>
-        <input type="text" id="title" name="title">
+        <input type="text" id="title" name="title" ref="titleInput">
       </div>
       <div class="form-control">
         <label for="description">Description</label>
-        <input type="text" id="description" name="description" rows="3">
+        <input type="text" id="description" name="description" rows="3" ref="descriptionInput">
       </div>
       <div class="form-control">
         <label for="link">Link</label>
-        <input type="url" id="link" name="link">
+        <input type="url" id="link" name="link" ref="linkInput">
       </div>
       <div>
         <base-button type="submit">Add Resource</base-button>
@@ -26,7 +26,17 @@ import BaseButton from "../UI/BaseButton";
 
 export default {
   name: "AddResource",
-  components: {BaseButton, BaseCard}
+  inject: ['addResource'],
+  components: {BaseButton, BaseCard},
+  methods: {
+    submitData() {
+      const enteredTitle = this.$refs.titleInput.value
+      const enteredDescription = this.$refs.descriptionInput.value
+      const enteredUrl = this.$refs.linkInput.value
+
+      this.addResource(enteredTitle, enteredDescription, enteredUrl)
+    }
+  }
 }
 </script>
 
