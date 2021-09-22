@@ -13,15 +13,11 @@
 <script>
 import AddResource from "../learning-resources/AddResource";
 import StoredResources from "../learning-resources/StoredResources";
-import BaseButton from "@/components/UI/BaseButton";
-import BaseCard from '@/components/UI/BaseCard'
 
 export default {
   components: {
     StoredResources,
-    AddResource,
-    BaseButton,
-    BaseCard
+    AddResource
   },
   computed: {
     storedResButtonMode() {

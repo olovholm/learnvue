@@ -1,4 +1,16 @@
 <template>
+  <base-dialog v-if="inputIsInvalid" title="Invalid input">
+    <template #default>
+      <p>Unfortunately input is invalid</p>
+      <p>Please check all input. They need to have at least one character</p>
+    </template>
+    <template #actions>
+      <base-button @click="confirmError">
+        Okay
+      </base-button>
+    </template>
+
+  </base-dialog>
   <base-card>
     <form @submit.prevent="submitData">
       <div class="form-control">
@@ -23,19 +35,34 @@
 <script>
 import BaseCard from "../UI/BaseCard";
 import BaseButton from "../UI/BaseButton";
+import BaseDialog from "../UI/BaseDialog";
 
 export default {
   name: "AddResource",
   inject: ['addResource'],
-  components: {BaseButton, BaseCard},
+  components: {BaseDialog, BaseButton, BaseCard},
   methods: {
     submitData() {
       const enteredTitle = this.$refs.titleInput.value
       const enteredDescription = this.$refs.descriptionInput.value
       const enteredUrl = this.$refs.linkInput.value
 
+      if(enteredTitle.trim() === '' || enteredDescription.trim() === '' || enteredUrl.trim() === ''){
+        console.log("Field is empty")
+        this.inputIsInvalid = true
+        return
+      }
+
       this.addResource(enteredTitle, enteredDescription, enteredUrl)
+    },
+    confirmError(){
+      this.inputIsInvalid = false
     }
+  },
+  data() {
+    return {
+      inputIsInvalid: false
+    };
   }
 }
 </script>
