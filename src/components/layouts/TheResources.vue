@@ -39,16 +39,16 @@ export default {
           link: 'http://vuejs.org'
         },
         {
-          id: 'google',
-          title: 'Google',
-          description: 'Google.com',
-          link: 'http://google.com'
+          id: 'pepes',
+          title: 'Pepes toy store',
+          description: 'Chew on that',
+          link: 'http://pepestoystore.com'
         },
         {
-          id: 'Froogle',
-          title: 'Froogle',
-          description: 'Froogle.com',
-          link: 'http://Froogle.com'
+          id: 'mako',
+          title: 'Macovei magic',
+          description: 'Dice, empire and black magic',
+          link: 'http://makotaco.com'
         }
       ]
     }
@@ -56,7 +56,8 @@ export default {
   provide() {
     return {
       resources: this.storedResources,
-      addResource: this.addResource
+      addResource: this.addResource,
+      deleteResource: this.removeResource
     }
   },
   methods: {
@@ -72,6 +73,11 @@ export default {
       }
       this.storedResources.unshift(newResource)
       this.selectedTab = 'stored-resources'
+    },
+    removeResource(resId) {
+      const resIndex = this.storedResources.findIndex(res => res.id === resId)
+      this.storedResources.splice(resIndex,1)
+      console.log("deleting resource" + resId)
     }
   }
 }
